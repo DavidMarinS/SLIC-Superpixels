@@ -1,7 +1,18 @@
+import os
 from PIL import Image
-im = Image.open("test_Cisplatino.png")
-#bg = Image.new("RGB", im.size, (255,255,255))
-#bg.paste(im, (0,0), im)
-bg = im.convert('RGB')
-bg.save("Success.jpg", qualiaty=100)
+
+Img_Dir = '/home/davidms/Documents/SLIC-Python/images/'
+file_Dir ='/home/davidms/Documents/SLIC-Python/' 
+file_dest ='/home/davidms/Documents/SLIC-Python/images_out/'
+image_type = '.jpg'
+
+for dirName, subdirList, fileList in os.walk(Img_Dir):
+	for fname in fileList:
+		#name = os.path.basename(Img_Dir)
+		#print(name)
+		name = fname.rstrip('.png')
+		im = Image.open(Img_Dir+fname)
+		bg = im.convert('RGB')
+		bg.save(file_dest+name+image_type, qualiaty=100)
+
 
